@@ -1,3 +1,7 @@
+#db
+**/documents
+**/documents-tests
+
 # Logs
 logs
 *.log
