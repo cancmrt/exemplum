@@ -26,7 +26,9 @@ describe('Local Database General Connectivity', function () {
 describe("Local Database crud operations on shortcuts",function(){
     it("Should add without error shortcut entity to db",function(){
         var unitOfWork = require("../../unitofwork");
+        //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
         var newShortcut = {
+            _id:"90x5w08W3PGk2ctm",
             command: "ping google.com",
             description: "simple ping command for google",
             star:true
@@ -119,7 +121,14 @@ describe("Local Database crud operations on shortcuts",function(){
 
     });
     it("Should delete shourtcut entity in db with _id",function(){
-
+        var unitOfWork = require("../../unitofwork");
+        var id = "90x5w08W3PGk2ctm"
+        unitOfWork.ShortcutRepository.DeleteShortcutWithId(id,function(result){
+            expect(result).not.to.be.null;
+            expect(result).not.to.be.undefined;
+            expect(result).to.be.an('number');
+            expect(result).to.be.greaterThan(0);
+        })
     });
 
 });

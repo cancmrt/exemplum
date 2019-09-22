@@ -94,8 +94,34 @@ var UpdateShortcut = function(query,update,callback){
     }
 }
 
+var DeleteShortcutWithId = function(id,callback){
+    if(is.not.null(id) && is.not.undefined(id) && is.string(id)){
+        var deleteQuery = {
+            _id:id
+        }
+        context.remove(deleteQuery,{}, function(err, numRemoved){
+            if(err){
+                log.logger.error(err);
+                callback(null);
+            }
+            else if(is.null(numRemoved) || is.undefined(numRemoved) || is.not.number(numRemoved)){
+                log.logger.error("Shortcuts db document is not deleting proper");
+                callback(null);
+            }
+            else{
+                callback(numRemoved)
+            }
+        });
+    }
+    else{
+        log.logger.error("Shortcuts db id parameters is not like our expected");
+        callback(null);
+    }
+}
+
 module.exports = {
     CreateShortcut:CreateShortcut,
     GetShortcutWithId:GetShortcutWithId,
-    UpdateShortcut:UpdateShortcut
+    UpdateShortcut:UpdateShortcut,
+    DeleteShortcutWithId:DeleteShortcutWithId
 }
