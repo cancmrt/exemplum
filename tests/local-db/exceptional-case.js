@@ -418,7 +418,178 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
     });
 });
 describe("Local Database crud operations on stats exceptional cases",function(){
-    
+
+    it("Should give error when adding stat.copied prop is missing",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            openedincmd:true
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.openedincmd prop is missing",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.copied prop is different than bool(string)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:"truee",
+            openedincmd:true
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            console.log(newValue);
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.copied prop is different than bool(number)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:1,
+            openedincmd:true
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.copied prop is different than bool(object)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:{},
+            openedincmd:true
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.copied prop is different than bool(undefined)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:undefined,
+            openedincmd:true
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.copied prop is different than bool(null)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:null,
+            openedincmd:true
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat property as a null",function(done){
+        var unitOfWork = require("../../unitofwork");
+
+        unitOfWork.StatRepository.CreateStat(null,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat property as a undefined",function(done){
+        var unitOfWork = require("../../unitofwork");
+
+        unitOfWork.StatRepository.CreateStat(undefined,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat property as a empty object",function(done){
+        var unitOfWork = require("../../unitofwork");
+
+        unitOfWork.StatRepository.CreateStat({},function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+
+    it("Should give error when adding stat.openedincmd prop is different than bool(string)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:"truee"
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.openedincmd prop is different than bool(number)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:1
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.openedincmd prop is different than bool(object)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:{}
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.openedincmd prop is different than bool(undefined)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:undefined
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.openedincmd prop is different than bool(null)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:null
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
 
 });
 describe("Local Database crud operations on folders exceptional cases",function(){
