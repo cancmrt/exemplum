@@ -33,7 +33,58 @@ var CreateStat = function(stat,callback){
     
 }
 
+var GetStatWithId = function(id,callback){
+    if(is.not.null(id) && is.not.undefined(id) && is.string(id)){
+        var findQuery = {
+            _id:id
+        }
+        context.findOne(findQuery, function(err, result){
+            if(err){
+                log.logger.error(err);
+                callback(null);
+            }
+            else if(is.null(result) || is.undefined(result) || is.not.object(result)){
+                log.logger.error("Stats db document is not coming proper");
+                callback(null);
+            }
+            else{
+                callback(result)
+            }
+        });
+    }
+    else{
+        log.logger.error("Stats db id parameters is not like our expected");
+        callback(null);
+    }
+}
+var DeleteStatWithId = function(id,callback){
+    if(is.not.null(id) && is.not.undefined(id) && is.string(id)){
+        var deleteQuery = {
+            _id:id
+        }
+        context.remove(deleteQuery,{}, function(err, numRemoved){
+            if(err){
+                log.logger.error(err);
+                callback(null);
+            }
+            else if(is.null(numRemoved) || is.undefined(numRemoved) || is.not.number(numRemoved)){
+                log.logger.error("Stats db document is not deleting proper");
+                callback(null);
+            }
+            else{
+                callback(numRemoved)
+            }
+        });
+    }
+    else{
+        log.logger.error("Stats db id parameters is not like our expected");
+        callback(null);
+    }
+}
+
 
 module.exports = {
-    CreateStat:CreateStat
+    CreateStat:CreateStat,
+    GetStatWithId:GetStatWithId,
+    DeleteStatWithId:DeleteStatWithId
 }

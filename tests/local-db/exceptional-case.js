@@ -280,7 +280,7 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
     });    
     
 
-    it("Should give error when getting id parameter is null",function(done){
+    it("Should give error when shortcut entity getting with id parameter is null",function(done){
         var unitOfWork = require("../../unitofwork");
         
         unitOfWork.ShortcutRepository.GetShortcutWithId(null,function(result){
@@ -289,7 +289,7 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
             done();
         });
     });
-    it("Should give error when getting id parameter is undefined ",function(done){
+    it("Should give error when shortcut entity getting with id parameter is undefined ",function(done){
         var unitOfWork = require("../../unitofwork");
         
         unitOfWork.ShortcutRepository.GetShortcutWithId(undefined,function(result){
@@ -298,7 +298,7 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
             done();
         });
     });
-    it("Should give error when getting id parameter is number ",function(done){
+    it("Should give error when shortcut entity getting with id parameter is number ",function(done){
         var unitOfWork = require("../../unitofwork");
         
         unitOfWork.ShortcutRepository.GetShortcutWithId(1,function(result){
@@ -307,7 +307,7 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
             done();
         });
     });
-    it("Should give error when getting id parameter is bool ",function(done){
+    it("Should give error when shortcut entity getting with id parameter is bool ",function(done){
         var unitOfWork = require("../../unitofwork");
         
         unitOfWork.ShortcutRepository.GetShortcutWithId(true,function(result){
@@ -380,7 +380,7 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
         
     });
 
-    it("Should give error when deleting id parameter is null",function(done){
+    it("Should give error when shortcut deleting with id parameter is null",function(done){
         var unitOfWork = require("../../unitofwork");
         
         unitOfWork.ShortcutRepository.DeleteShortcutWithId(null,function(result){
@@ -389,7 +389,7 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
             done();
         });
     });
-    it("Should give error when deleting id parameter is undefined ",function(done){
+    it("Should give error when shortcut deleting with id parameter is undefined ",function(done){
         var unitOfWork = require("../../unitofwork");
         
         unitOfWork.ShortcutRepository.DeleteShortcutWithId(undefined,function(result){
@@ -398,7 +398,7 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
             done();
         });
     });
-    it("Should give error when deleting id parameter is number ",function(done){
+    it("Should give error when shortcut deleting with id parameter is number ",function(done){
         var unitOfWork = require("../../unitofwork");
         
         unitOfWork.ShortcutRepository.DeleteShortcutWithId(1,function(result){
@@ -407,7 +407,7 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
             done();
         });
     });
-    it("Should give error when deleting id parameter is bool ",function(done){
+    it("Should give error when shortcut deleting with id parameter is bool ",function(done){
         var unitOfWork = require("../../unitofwork");
         
         unitOfWork.ShortcutRepository.DeleteShortcutWithId(true,function(result){
@@ -590,6 +590,83 @@ describe("Local Database crud operations on stats exceptional cases",function(){
             done();
         });
     });
+
+    it("Should give error when stat entity getting with id parameter is null",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.GetStatWithId(null,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when stat entity getting with id parameter is undefined ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.GetStatWithId(undefined,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when stat entity getting with id parameter is number ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.GetStatWithId(1,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when stat entity getting with id parameter is bool ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.GetStatWithId(true,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+
+
+    it("Should give error when stat entity deleting with id parameter is null",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.DeleteStatWithId(null,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when stat entity deleting id with parameter is undefined ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.DeleteStatWithId(undefined,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when stat entity deleting with id parameter is number ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.DeleteStatWithId(1,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when deleting stat entity id with parameter is bool ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.DeleteStatWithId(true,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+
+    
 
 });
 describe("Local Database crud operations on folders exceptional cases",function(){
