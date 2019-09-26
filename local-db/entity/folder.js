@@ -13,7 +13,7 @@ var folderRuleCanbeOneOfThem = {
 }
 
 module.exports = {
-    stat:stat,
+    folder:folder,
     folderRuleHaveToAllProp:folderRulePersistance,
     folderRuleAtLeastHaveOneProp:folderRuleCanbeOneOfThem
 };

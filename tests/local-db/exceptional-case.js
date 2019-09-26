@@ -670,8 +670,178 @@ describe("Local Database crud operations on stats exceptional cases",function(){
 
 });
 describe("Local Database crud operations on folders exceptional cases",function(){
-    
 
+    it("Should give error when adding folder.folderName prop is missing",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newFolder = {
+            star:true
+        };
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder.star prop is missing",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newFolder = {
+            folderName:"Docker"
+        };
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder.folderName prop is different than string(bool)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newFolder = {
+            folderName:true,
+            star:true
+        };
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            console.log(newValue);
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder.folderName prop is different than string(number)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newFolder = {
+            folderName:1,
+            star:true
+        };
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder.folderName prop is different than string(object)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newFolder = {
+            folderName:{},
+            star:true
+        };
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder.folderName prop is different than string(undefined)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newFolder = {
+            folderName:undefined,
+            star:true
+        };
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder.folderName prop is different than string(null)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newFolder = {
+            folderName:null,
+            star:true
+        };
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder entity as a null",function(done){
+        var unitOfWork = require("../../unitofwork");
+
+        unitOfWork.FolderRepository.CreateFolder(null,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder entity as a undefined",function(done){
+        var unitOfWork = require("../../unitofwork");
+
+        unitOfWork.FolderRepository.CreateFolder(undefined,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder entity as a empty object",function(done){
+        var unitOfWork = require("../../unitofwork");
+
+        unitOfWork.FolderRepository.CreateFolder({},function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+
+    it("Should give error when adding folder.star prop is different than bool(string)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newFolder = {
+            folderName:"Docker",
+            star:"truee"
+        };
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder.star prop is different than bool(number)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newFolder = {
+            folderName:"Docker",
+            star:1
+        };
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder.star prop is different than bool(object)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newFolder = {
+            folderName:"Docker",
+            star:{}
+        };
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder.star prop is different than bool(undefined)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newFolder = {
+            folderName:"Docker",
+            star:undefined
+        };
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding folder.star prop is different than bool(null)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newFolder = {
+            folderName:"Docker",
+            star:null
+        };
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
 });
 describe("Local Database crud operations on RELATIONS exceptional cases",function(){
     

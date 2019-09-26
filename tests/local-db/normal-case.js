@@ -187,8 +187,23 @@ describe("Local Database crud operations on stats",function(){
 
 });
 describe("Local Database crud operations on folders",function(){
-    it("Should add without error folder entity to db",function(){
-
+    it("Should add without error folder entity to db",function(done){
+        var unitOfWork = require("../../unitofwork");
+        //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
+        var newFolder = {
+            //_id:"90x5w08W3PGk2ctm",
+            folderName: "Docker",
+            star:true
+        }
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newValue){
+            expect(newValue).not.to.be.null;
+            expect(newValue).not.to.be.undefined;
+            expect(newValue).haveOwnProperty("_id");
+            expect(newValue._id).not.to.be.null;
+            expect(newValue._id).not.to.be.undefined;
+            expect(newValue._id).to.be.string;
+            done();
+        });
     });
     it("Should get folder entity with _id",function(){
 
