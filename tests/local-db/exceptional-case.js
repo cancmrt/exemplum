@@ -316,7 +316,7 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
             done();
         });
     });
-    it("Should give error when try update with null ",function(done){
+    it("Should give error when try update shortcut entity with null ",function(done){
         var unitOfWork = require("../../unitofwork");
         var query = {
             _id: "90x5w08W3PGk2ctm"
@@ -328,7 +328,7 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
         });
         
     });
-    it("Should give error when try update with string ",function(done){
+    it("Should give error when try update shortcut entity with string ",function(done){
         var unitOfWork = require("../../unitofwork");
         var query = {
             _id: "90x5w08W3PGk2ctm"
@@ -340,7 +340,7 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
         });
         
     });
-    it("Should give error when try update with number ",function(done){
+    it("Should give error when try update shortcut entity with number ",function(done){
         var unitOfWork = require("../../unitofwork");
         var query = {
             _id: "90x5w08W3PGk2ctm"
@@ -352,19 +352,31 @@ describe("Local Database crud operations on shortcuts exceptional cases",functio
         });
         
     });
-    it("Should give error when try update with bool ",function(done){
+    it("Should give error when try update shortcut entity with bool ",function(done){
         var unitOfWork = require("../../unitofwork");
         var query = {
             _id: "90x5w08W3PGk2ctm"
         };
-        unitOfWork.ShortcutRepository.UpdateShortcut(query,"undefined",function(result){
+        unitOfWork.ShortcutRepository.UpdateShortcut(query,false,function(result){
             expect(result).to.be.null;
             expect(result).not.to.be.undefined;
             done();
         });
         
     });
-    it("Should give error when try update with different prop not included in shortcut entity ",function(done){
+    it("Should give error when try update shortcut entity with undefined ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var query = {
+            _id: "90x5w08W3PGk2ctm"
+        };
+        unitOfWork.ShortcutRepository.UpdateShortcut(query,undefined,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+        
+    });
+    it("Should give error when try update shortcut entity with different prop not included in shortcut entity ",function(done){
         var unitOfWork = require("../../unitofwork");
         var query = {
             _id: "90x5w08W3PGk2ctm"
@@ -842,6 +854,159 @@ describe("Local Database crud operations on folders exceptional cases",function(
             done();
         });
     });
+
+    it("Should give error when folder entity getting with id parameter is null",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.FolderRepository.GetFolderWithId(null,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when folder entity getting with id parameter is undefined ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.FolderRepository.GetFolderWithId(undefined,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when folder entity getting with id parameter is number ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.FolderRepository.GetFolderWithId(1,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when folder entity getting with id parameter is bool ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.FolderRepository.GetFolderWithId(true,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+
+    it("Should give error when try update folder entity with null ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var query = {
+            _id: "Rnh6kDHNuaR0a0hS"
+        };
+        unitOfWork.FolderRepository.UpdateFolder(query,null,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+        
+    });
+    it("Should give error when try update folder entity with string ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var query = {
+            _id: "Rnh6kDHNuaR0a0hS"
+        };
+        unitOfWork.FolderRepository.UpdateFolder(query,"undefined",function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+        
+    });
+    it("Should give error when try update folder entity with number ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var query = {
+            _id: "Rnh6kDHNuaR0a0hS"
+        };
+        unitOfWork.FolderRepository.UpdateFolder(query,1,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+        
+    });
+    it("Should give error when try update folder entity with bool ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var query = {
+            _id: "Rnh6kDHNuaR0a0hS"
+        };
+        unitOfWork.FolderRepository.UpdateFolder(query,false,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+        
+    });
+    it("Should give error when try update folder entity with undefined ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var query = {
+            _id: "Rnh6kDHNuaR0a0hS"
+        };
+        unitOfWork.FolderRepository.UpdateFolder(query,undefined,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+        
+    });
+    it("Should give error when try update folder entity with different prop not included in shortcut entity ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var query = {
+            _id: "Rnh6kDHNuaR0a0hS"
+        };
+        var diffProp = {
+            aldirmaGonul: "Edip Akbayram"
+        }
+        unitOfWork.FolderRepository.UpdateFolder(query,diffProp,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+        
+    });
+
+
+    it("Should give error when folder entity deleting with id parameter is null",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.FolderRepository.DeleteFolderWithId(null,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when folder entity deleting id with parameter is undefined ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.DeleteStatWithId(undefined,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when folder deleting with id parameter is number ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.FolderRepository.DeleteFolderWithId(1,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when deleting folder entity id with parameter is bool ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.FolderRepository.DeleteFolderWithId(true,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+
+
 });
 describe("Local Database crud operations on RELATIONS exceptional cases",function(){
     

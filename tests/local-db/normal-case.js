@@ -57,7 +57,7 @@ describe("Local Database crud operations on shortcuts",function(){
             expect(result._id).not.to.be.undefined;
             expect(result._id).to.be.string;
             done();
-        })
+        });
 
     });
     it("Should update shortcut property star",function(done){
@@ -182,7 +182,7 @@ describe("Local Database crud operations on stats",function(){
             expect(result).to.be.an('number');
             expect(result).to.be.greaterThan(0);
             done();
-        })
+        });
     });
 
 });
@@ -191,7 +191,7 @@ describe("Local Database crud operations on folders",function(){
         var unitOfWork = require("../../unitofwork");
         //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
         var newFolder = {
-            //_id:"90x5w08W3PGk2ctm",
+            _id:"Rnh6kDHNuaR0a0hS",
             folderName: "Docker",
             star:true
         }
@@ -205,28 +205,75 @@ describe("Local Database crud operations on folders",function(){
             done();
         });
     });
-    it("Should get folder entity with _id",function(){
-
+    it("Should get folder entity with _id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var id = "Rnh6kDHNuaR0a0hS"
+        unitOfWork.FolderRepository.GetFolderWithId(id,function(result){
+            expect(result).not.to.be.null;
+            expect(result).not.to.be.undefined;
+            expect(result).haveOwnProperty("_id");
+            expect(result._id).not.to.be.null;
+            expect(result._id).not.to.be.undefined;
+            expect(result._id).to.be.string;
+            done();
+        });
     });
-    it("Should update folder property folderName",function(){
-
+    it("Should update folder property star",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var query = {
+            _id: 'Rnh6kDHNuaR0a0hS'
+        };
+        var update = {
+            star: false
+        };
+        unitOfWork.FolderRepository.UpdateFolder(query,update,function(result){
+            expect(result).not.to.be.null;
+            expect(result).not.to.be.undefined;
+            expect(result).to.be.an('number');
+            expect(result).to.be.greaterThan(0);
+            done();
+        });
     });
-    it("Should update folder property star",function(){
-
+    it("Should update folder property folderName",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var query = {
+            _id: 'Rnh6kDHNuaR0a0hS'
+        };
+        var update = {
+            folderName: "DOCKERS"
+        };
+        unitOfWork.FolderRepository.UpdateFolder(query,update,function(result){
+            expect(result).not.to.be.null;
+            expect(result).not.to.be.undefined;
+            expect(result).to.be.an('number');
+            expect(result).to.be.greaterThan(0);
+            done();
+        });
     });
-    it("Should delete folder entity in db",function(){
-
+    it("Should delete folder entity in db",function(done){
+        var unitOfWork = require("../../unitofwork");
+            var id = "Rnh6kDHNuaR0a0hS"
+            unitOfWork.FolderRepository.DeleteFolderWithId(id,function(result){
+                expect(result).not.to.be.null;
+                expect(result).not.to.be.undefined;
+                expect(result).to.be.an('number');
+                expect(result).to.be.greaterThan(0);
+                done();
+        });
     });
 
 });
 describe("Local Database crud operations on RELATIONS",function(){
-    it("Should, when shortcut entity delete; also delete in folders and stats",function(){
+    it("Should if shortcut entity delete; also delete in folders and stats",function(){
 
     });
     it("Should get shortcut entity with relational stat entity array",function(){
 
     });
     it("Should get all folders entity with relational shortcut entity array",function(){
+
+    });
+    it("Should if folder entity delete; also delete shortcut relation which added to folder",function(){
 
     });
 });
