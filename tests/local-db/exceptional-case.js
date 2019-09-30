@@ -434,7 +434,9 @@ describe("Local Database crud operations on stats exceptional cases",function(){
     it("Should give error when adding stat.copied prop is missing",function(done){
         var unitOfWork = require("../../unitofwork");
         var newStat = {
-            openedincmd:true
+            openedincmd:true,
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
         };
         unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
             expect(newValue).to.be.null;
@@ -445,7 +447,35 @@ describe("Local Database crud operations on stats exceptional cases",function(){
     it("Should give error when adding stat.openedincmd prop is missing",function(done){
         var unitOfWork = require("../../unitofwork");
         var newStat = {
-            copied:true
+            copied:true,
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.openedinbrowser prop is missing",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            openedincmd:true,
+            copied:true,
+            shortcut_id:"90x5w08W3PGk2ctm"
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.shortcut_id prop is missing",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:false,
+            openedincmd:true,
+            openedinbrowser:false
         };
         unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
             expect(newValue).to.be.null;
@@ -457,7 +487,9 @@ describe("Local Database crud operations on stats exceptional cases",function(){
         var unitOfWork = require("../../unitofwork");
         var newStat = {
             copied:"truee",
-            openedincmd:true
+            openedincmd:true,
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
         };
         unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
             console.log(newValue);
@@ -470,7 +502,9 @@ describe("Local Database crud operations on stats exceptional cases",function(){
         var unitOfWork = require("../../unitofwork");
         var newStat = {
             copied:1,
-            openedincmd:true
+            openedincmd:true,
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
         };
         unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
             expect(newValue).to.be.null;
@@ -482,7 +516,9 @@ describe("Local Database crud operations on stats exceptional cases",function(){
         var unitOfWork = require("../../unitofwork");
         var newStat = {
             copied:{},
-            openedincmd:true
+            openedincmd:true,
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
         };
         unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
             expect(newValue).to.be.null;
@@ -494,7 +530,9 @@ describe("Local Database crud operations on stats exceptional cases",function(){
         var unitOfWork = require("../../unitofwork");
         var newStat = {
             copied:undefined,
-            openedincmd:true
+            openedincmd:true,
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
         };
         unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
             expect(newValue).to.be.null;
@@ -506,7 +544,9 @@ describe("Local Database crud operations on stats exceptional cases",function(){
         var unitOfWork = require("../../unitofwork");
         var newStat = {
             copied:null,
-            openedincmd:true
+            openedincmd:true,
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
         };
         unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
             expect(newValue).to.be.null;
@@ -546,7 +586,9 @@ describe("Local Database crud operations on stats exceptional cases",function(){
         var unitOfWork = require("../../unitofwork");
         var newStat = {
             copied:true,
-            openedincmd:"truee"
+            openedincmd:"truee",
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
         };
         unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
             expect(newValue).to.be.null;
@@ -558,7 +600,9 @@ describe("Local Database crud operations on stats exceptional cases",function(){
         var unitOfWork = require("../../unitofwork");
         var newStat = {
             copied:true,
-            openedincmd:1
+            openedincmd:1,
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
         };
         unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
             expect(newValue).to.be.null;
@@ -570,7 +614,9 @@ describe("Local Database crud operations on stats exceptional cases",function(){
         var unitOfWork = require("../../unitofwork");
         var newStat = {
             copied:true,
-            openedincmd:{}
+            openedincmd:{},
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
         };
         unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
             expect(newValue).to.be.null;
@@ -582,7 +628,9 @@ describe("Local Database crud operations on stats exceptional cases",function(){
         var unitOfWork = require("../../unitofwork");
         var newStat = {
             copied:true,
-            openedincmd:undefined
+            openedincmd:undefined,
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
         };
         unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
             expect(newValue).to.be.null;
@@ -594,7 +642,151 @@ describe("Local Database crud operations on stats exceptional cases",function(){
         var unitOfWork = require("../../unitofwork");
         var newStat = {
             copied:true,
-            openedincmd:null
+            openedincmd:null,
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+
+    it("Should give error when adding stat.openedinbrowser prop is different than bool(string)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:false,
+            openedinbrowser:"truee",
+            shortcut_id:"90x5w08W3PGk2ctm"
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.openedinbrowser prop is different than bool(number)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:false,
+            openedinbrowser:1,
+            shortcut_id:"90x5w08W3PGk2ctm"
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.openedinbrowser prop is different than bool(object)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:false,
+            openedinbrowser:{},
+            shortcut_id:"90x5w08W3PGk2ctm"
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.openedinbrowser prop is different than bool(undefined)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:false,
+            openedinbrowser:undefined,
+            shortcut_id:"90x5w08W3PGk2ctm"
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.openedinbrowser prop is different than bool(null)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:false,
+            openedinbrowser:null,
+            shortcut_id:"90x5w08W3PGk2ctm"
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+
+    it("Should give error when adding stat.shortcut_id prop is different than string(bool)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:false,
+            openedinbrowser:false,
+            shortcut_id:true
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.shortcut_id prop is different than string(number)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:false,
+            openedinbrowser:false,
+            shortcut_id:1
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.shortcut_id prop is different than string(object)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:false,
+            openedinbrowser:false,
+            shortcut_id:{}
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.shortcut_id prop is different than string(undefined)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:false,
+            openedinbrowser:false,
+            shortcut_id:undefined
+        };
+        unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when adding stat.shortcut_id prop is different than string(null)",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var newStat = {
+            copied:true,
+            openedincmd:false,
+            openedinbrowser:false,
+            shortcut_id:null
         };
         unitOfWork.StatRepository.CreateStat(newStat,function(newValue){
             expect(newValue).to.be.null;

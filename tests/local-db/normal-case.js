@@ -148,7 +148,9 @@ describe("Local Database crud operations on stats",function(){
         var stat = {
             _id: "WmFgxF1NKxnkzO8q",
             copied:true,
-            openedincmd:false
+            openedincmd:false,
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
         }
         unitOfWork.StatRepository.CreateStat(stat,function(newValue){
             expect(newValue).not.to.be.null;
@@ -264,7 +266,7 @@ describe("Local Database crud operations on folders",function(){
 
 });
 describe("Local Database crud operations on RELATIONS",function(){
-    it("Should if shortcut entity delete; also delete in folders and stats",function(){
+    it("Should, if shortcut entity delete; also delete in folders relatio and stats relation",function(){
 
     });
     it("Should get shortcut entity with relational stat entity array",function(){
@@ -273,7 +275,7 @@ describe("Local Database crud operations on RELATIONS",function(){
     it("Should get all folders entity with relational shortcut entity array",function(){
 
     });
-    it("Should if folder entity delete; also delete shortcut relation which added to folder",function(){
+    it("Should, if folder entity delete; also delete shortcut relation which added to folder",function(){
 
     });
 });
