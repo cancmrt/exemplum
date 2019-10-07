@@ -1200,6 +1200,82 @@ describe("Local Database crud operations on folders exceptional cases",function(
 
 
 });
+
+describe("Local Database crud operations on shortcutsinfolders exceptional cases",function(){
+    it("Should  give error when try to add shortcutsinfolders entity with missing folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
+        var newShortcutsinfolders = {
+            
+            shortcut_id:"90x5w08W3PGk2ctm"
+        }
+        unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should  give error when try to add shortcutsinfolders entity with null folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
+        var newShortcutsinfolders = {
+            folder_id:null,
+            shortcut_id:"90x5w08W3PGk2ctm"
+        }
+        unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should  give error when try to add shortcutsinfolders entity with undefined folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
+        var newShortcutsinfolders = {
+            folder_id:undefined,
+            shortcut_id:"90x5w08W3PGk2ctm"
+        }
+        unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should  give error when try to add shortcutsinfolders entity with number folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
+        var newShortcutsinfolders = {
+            folder_id: -1,
+            shortcut_id:"90x5w08W3PGk2ctm"
+        }
+        unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should  give error when try to add shortcutsinfolders entity with bool folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
+        var newShortcutsinfolders = {
+            folder_id: true,
+            shortcut_id:"90x5w08W3PGk2ctm"
+        }
+        unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    /*it("Should delete targetted with folder_id document in shortcutsinfolders db documents",function(done){
+        
+    });
+    it("Should delete targetted with folder_id document in shortcutsinfolders db documents",function(done){
+        
+    });*/
+
+});
+
 describe("Local Database crud operations on RELATIONS exceptional cases",function(){
     
 });

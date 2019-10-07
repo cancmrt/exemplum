@@ -265,8 +265,59 @@ describe("Local Database crud operations on folders",function(){
     });
 
 });
+describe("Local Database crud operations on shortcutsinfolders",function(){
+    it("Should add folder and shortcut relation(shortcutsinfolders) to db",function(done){
+        var unitOfWork = require("../../unitofwork");
+
+        var newShortcutsinfolders = {
+            //_id:"4uGHxXOsYCtehGe9",
+            folder_id: "Rnh6kDHNuaR0a0hS",
+            shortcut_id:"90x5w08W3PGk2ctm"
+        }
+        unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+            expect(newValue).not.to.be.null;
+            expect(newValue).not.to.be.undefined;
+            expect(newValue).haveOwnProperty("_id");
+            expect(newValue._id).not.to.be.null;
+            expect(newValue._id).not.to.be.undefined;
+            expect(newValue._id).to.be.string;
+            done();
+        });
+    });
+    it("Should delete targetted with folder_id document in shortcutsinfolders db documents",function(done){
+        var unitOfWork = require("../../unitofwork");
+
+        unitOfWork.ShortcutsInFolders.FolderDeleted("Rnh6kDHNuaR0a0hS",function(result){
+            expect(result).not.to.be.null;
+            expect(result).not.to.be.undefined;
+            expect(result).to.be.an('number');
+            expect(result).to.be.greaterThan(0);
+            done();
+        });
+    });
+    it("Should delete targetted with folder_id document in shortcutsinfolders db documents",function(done){
+        var unitOfWork = require("../../unitofwork");
+
+        var newShortcutsinfolders = {
+            //_id:"4uGHxXOsYCtehGe9",
+            folder_id: "Rnh6kDHNuaR0a0hS",
+            shortcut_id:"90x5w08W3PGk2ctm"
+        }
+        unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+            unitOfWork.ShortcutsInFolders.ShortcutDeleted("90x5w08W3PGk2ctm",function(result){
+                expect(result).not.to.be.null;
+                expect(result).not.to.be.undefined;
+                expect(result).to.be.an('number');
+                expect(result).to.be.greaterThan(0);
+                done();
+            });
+        });
+        
+    });
+
+});
 describe("Local Database crud operations on RELATIONS",function(){
-    it("Should, if shortcut entity delete; also delete in folders relatio and stats relation",function(){
+    it("Should, if shortcut entity delete; also delete in folders relation and stats relation",function(){
 
     });
     it("Should get shortcut entity with relational stat entity array",function(){
