@@ -1202,6 +1202,8 @@ describe("Local Database crud operations on folders exceptional cases",function(
 });
 
 describe("Local Database crud operations on shortcutsinfolders exceptional cases",function(){
+
+
     it("Should  give error when try to add shortcutsinfolders entity with missing folder_id",function(done){
         var unitOfWork = require("../../unitofwork");
         //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
@@ -1267,10 +1269,158 @@ describe("Local Database crud operations on shortcutsinfolders exceptional cases
             done();
         });
     });
-    /*it("Should delete targetted with folder_id document in shortcutsinfolders db documents",function(done){
-        
+
+
+    it("Should  give error when try to add shortcutsinfolders entity with missing shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
+        var newShortcutsinfolders = {
+            folder_id: "Rnh6kDHNuaR0a0hS"
+        }
+        unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
     });
-    it("Should delete targetted with folder_id document in shortcutsinfolders db documents",function(done){
+    it("Should  give error when try to add shortcutsinfolders entity with null shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
+        var newShortcutsinfolders = {
+            folder_id:"Rnh6kDHNuaR0a0hS",
+            shortcut_id:null
+        }
+        unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should  give error when try to add shortcutsinfolders entity with undefined shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
+        var newShortcutsinfolders = {
+            folder_id:"Rnh6kDHNuaR0a0hS",
+            shortcut_id:undefined
+        }
+        unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should  give error when try to add shortcutsinfolders entity with number shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
+        var newShortcutsinfolders = {
+            folder_id:"Rnh6kDHNuaR0a0hS",
+            shortcut_id:-1
+        }
+        unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should  give error when try to add shortcutsinfolders entity with bool shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        //{"description":"simple ping command for google","command":"ping google.com","star":true,"_id":"90x5w08W3PGk2ctm"}
+        var newShortcutsinfolders = {
+            folder_id:"Rnh6kDHNuaR0a0hS",
+            shortcut_id:true
+        }
+        unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+
+
+
+    it("Should give error when trying to delete shortcutsinfolders entity with undefined folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.ShortcutsInFolders.FolderDeleted(undefined,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when trying to delete shortcutsinfolders entity with null folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.ShortcutsInFolders.FolderDeleted(undefined,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when trying to delete shortcutsinfolders entity with bool folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.ShortcutsInFolders.FolderDeleted(true,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when trying to delete shortcutsinfolders entity with number folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.ShortcutsInFolders.FolderDeleted(-1,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when trying to delete shortcutsinfolders entity with object folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.ShortcutsInFolders.FolderDeleted({},function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+
+
+    it("Should give error when trying to delete shortcutsinfolders entity with undefined shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.ShortcutsInFolders.ShortcutDeleted(undefined,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when trying to delete shortcutsinfolders entity with null shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.ShortcutsInFolders.ShortcutDeleted(undefined,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when trying to delete shortcutsinfolders entity with bool shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.ShortcutsInFolders.ShortcutDeleted(true,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when trying to delete shortcutsinfolders entity with number shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.ShortcutsInFolders.ShortcutDeleted(-1,function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when trying to delete shortcutsinfolders entity with object shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.ShortcutsInFolders.ShortcutDeleted({},function(newValue){
+            expect(newValue).to.be.null;
+            expect(newValue).not.to.be.undefined;
+            done();
+        });
+    });
+    /*it("Should delete targetted with folder_id document in shortcutsinfolders db documents",function(done){
         
     });*/
 

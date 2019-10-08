@@ -35,43 +35,55 @@ var AddShortcutToFolder = function(shourtcutsinfolders,callback){
 
 var FolderDeleted = function(folderId, callback){
 
-    var deleteQuery = {
-        folder_id:folderId
+    if(is.not.null(folderId) && is.not.undefined(folderId) && is.string(folderId)){
+        var deleteQuery = {
+            folder_id:folderId
+        }
+        context.remove(deleteQuery,{}, function(err, numRemoved){
+            if(err){
+                log.logger.error(err);
+                callback(null);
+            }
+            else if(is.null(numRemoved) || is.undefined(numRemoved) || is.not.number(numRemoved)){
+                log.logger.error("Deleted folder shourtcuts relations are not deleting proper");
+                callback(null);
+            }
+            else{
+                callback(numRemoved)
+            }
+        });
     }
-    context.remove(deleteQuery,{}, function(err, numRemoved){
-        if(err){
-            log.logger.error(err);
-            callback(null);
-        }
-        else if(is.null(numRemoved) || is.undefined(numRemoved) || is.not.number(numRemoved)){
-            log.logger.error("Deleted folder shourtcuts relations are not deleting proper");
-            callback(null);
-        }
-        else{
-            callback(numRemoved);
-        }
-    });
+    else{
+        log.logger.error("Folderid parameters is not like our expected");
+        callback(null);
+    }
 
 }
 
 var ShortcutDeleted = function(shortcutId, callback){
 
-    var deleteQuery = {
-        shortcut_id:shortcutId
+    if(is.not.null(shortcutId) && is.not.undefined(shortcutId) && is.string(shortcutId)){
+        var deleteQuery = {
+            shortcut_id:shortcutId
+        }
+        context.remove(deleteQuery,{}, function(err, numRemoved){
+            if(err){
+                log.logger.error(err);
+                callback(null);
+            }
+            else if(is.null(numRemoved) || is.undefined(numRemoved) || is.not.number(numRemoved)){
+                log.logger.error("Deleted shourtcut folders relations are not deleting proper");
+                callback(null);
+            }
+            else{
+                callback(numRemoved)
+            }
+        });
     }
-    context.remove(deleteQuery,{}, function(err, numRemoved){
-        if(err){
-            log.logger.error(err);
-            callback(null);
-        }
-        else if(is.null(numRemoved) || is.undefined(numRemoved) || is.not.number(numRemoved)){
-            log.logger.error("Deleted shourtcut folders relations are not deleting proper");
-            callback(null);
-        }
-        else{
-            callback(numRemoved);
-        }
-    });
+    else{
+        log.logger.error("Shortcutid parameters is not like our expected");
+        callback(null);
+    }
 
 }
 
