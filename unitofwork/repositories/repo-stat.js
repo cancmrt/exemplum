@@ -81,10 +81,35 @@ var DeleteStatWithId = function(id,callback){
         callback(null);
     }
 }
+var DeleteStatWithShortcutId = function(shortcutId,callback){
+    if(is.not.null(shortcutId) && is.not.undefined(shortcutId) && is.string(shortcutId)){
+        var deleteQuery = {
+            shortcut_id:shortcutId
+        }
+        context.remove(deleteQuery,{}, function(err, numRemoved){
+            if(err){
+                log.logger.error(err);
+                callback(null);
+            }
+            else if(is.null(numRemoved) || is.undefined(numRemoved) || is.not.number(numRemoved)){
+                log.logger.error("Stats db documents is not deleting proper with shortcut_id");
+                callback(null);
+            }
+            else{
+                callback(numRemoved)
+            }
+        });
+    }
+    else{
+        log.logger.error("Stats db shortcutId parameters is not like our expected");
+        callback(null);
+    }
+}
 
 
 module.exports = {
     CreateStat:CreateStat,
     GetStatWithId:GetStatWithId,
-    DeleteStatWithId:DeleteStatWithId
+    DeleteStatWithId:DeleteStatWithId,
+    DeleteStatWithShortcutId:DeleteStatWithShortcutId
 }

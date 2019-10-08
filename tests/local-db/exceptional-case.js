@@ -842,7 +842,7 @@ describe("Local Database crud operations on stats exceptional cases",function(){
             done();
         });
     });
-    it("Should give error when stat entity deleting id with parameter is undefined ",function(done){
+    it("Should give error when stat entity deleting with id parameter is undefined ",function(done){
         var unitOfWork = require("../../unitofwork");
         
         unitOfWork.StatRepository.DeleteStatWithId(undefined,function(result){
@@ -860,10 +860,47 @@ describe("Local Database crud operations on stats exceptional cases",function(){
             done();
         });
     });
-    it("Should give error when deleting stat entity id with parameter is bool ",function(done){
+    it("Should give error when deleting stat entity with id parameter is bool ",function(done){
         var unitOfWork = require("../../unitofwork");
         
         unitOfWork.StatRepository.DeleteStatWithId(true,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+
+    it("Should give error when stat entity deleting with shortcut_id parameter is null",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.DeleteStatWithShortcutId(null,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when stat entity deleting with shortcut_id parameter is undefined ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.DeleteStatWithShortcutId(undefined,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when stat entity deleting with shortcut_id parameter is number ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.DeleteStatWithShortcutId(1,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when stat entity deleting with shortcut_id parameter is bool ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.DeleteStatWithShortcutId(true,function(result){
             expect(result).to.be.null;
             expect(result).not.to.be.undefined;
             done();

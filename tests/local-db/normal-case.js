@@ -143,6 +143,8 @@ describe("Local Database crud operations on shortcuts",function(){
 
 });
 describe("Local Database crud operations on stats",function(){
+
+
     it("Should add without error stat entity to db",function(done){
         var unitOfWork = require("../../unitofwork");
         var stat = {
@@ -175,7 +177,7 @@ describe("Local Database crud operations on stats",function(){
             done();
         });
     });
-    it("Should delete stat entity in db",function(done){
+    it("Should delete stat entity in db with _id",function(done){
         var unitOfWork = require("../../unitofwork");
         var id = "WmFgxF1NKxnkzO8q"
         unitOfWork.StatRepository.DeleteStatWithId(id,function(result){
@@ -186,6 +188,31 @@ describe("Local Database crud operations on stats",function(){
             done();
         });
     });
+    it("Should delete stat entity in db with shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var shortcutId = "90x5w08W3PGk2ctm"
+
+        var stat = {
+            _id: "WmFgxF1NKxnkzO8q",
+            copied:true,
+            openedincmd:false,
+            openedinbrowser:false,
+            shortcut_id:"90x5w08W3PGk2ctm"
+        }
+        unitOfWork.StatRepository.CreateStat(stat,function(newValue){
+            unitOfWork.StatRepository.DeleteStatWithShortcutId(shortcutId,function(result){
+                expect(result).not.to.be.null;
+                expect(result).not.to.be.undefined;
+                expect(result).to.be.an('number');
+                expect(result).to.be.greaterThan(0);
+                done();
+            });
+        });
+
+        
+    });
+
+
 
 });
 describe("Local Database crud operations on folders",function(){
