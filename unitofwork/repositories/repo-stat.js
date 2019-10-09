@@ -57,6 +57,30 @@ var GetStatWithId = function(id,callback){
         callback(null);
     }
 }
+var GetStatWithShortcutId = function(shortcutId,callback){
+    if(is.not.null(shortcutId) && is.not.undefined(shortcutId) && is.string(shortcutId)){
+        var findQuery = {
+            shortcut_id:shortcutId
+        }
+        context.find(findQuery, function(err, result){
+            if(err){
+                log.logger.error(err);
+                callback(null);
+            }
+            else if(is.null(result) || is.undefined(result) || is.not.object(result)){
+                log.logger.error("Stats db document is not coming proper");
+                callback(null);
+            }
+            else{
+                callback(result)
+            }
+        });
+    }
+    else{
+        log.logger.error("Stats db shortcutId parameters is not like our expected");
+        callback(null);
+    }
+}
 var DeleteStatWithId = function(id,callback){
     if(is.not.null(id) && is.not.undefined(id) && is.string(id)){
         var deleteQuery = {
@@ -110,6 +134,7 @@ var DeleteStatWithShortcutId = function(shortcutId,callback){
 module.exports = {
     CreateStat:CreateStat,
     GetStatWithId:GetStatWithId,
+    GetStatWithShortcutId:GetStatWithShortcutId,
     DeleteStatWithId:DeleteStatWithId,
     DeleteStatWithShortcutId:DeleteStatWithShortcutId
 }

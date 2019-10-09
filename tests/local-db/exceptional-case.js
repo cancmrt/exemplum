@@ -832,6 +832,43 @@ describe("Local Database crud operations on stats exceptional cases",function(){
         });
     });
 
+    it("Should give error when stat entity getting with shortcut_id parameter is null",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.GetStatWithShortcutId(null,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when stat entity getting with shortcut_id parameter is undefined ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.GetStatWithShortcutId(undefined,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when stat entity getting with shortcut_id parameter is number ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.GetStatWithShortcutId(1,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when stat entity getting with shortcut_id parameter is bool ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.StatRepository.GetStatWithShortcutId(true,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+
 
     it("Should give error when stat entity deleting with id parameter is null",function(done){
         var unitOfWork = require("../../unitofwork");
@@ -1457,12 +1494,44 @@ describe("Local Database crud operations on shortcutsinfolders exceptional cases
             done();
         });
     });
-    /*it("Should delete targetted with folder_id document in shortcutsinfolders db documents",function(done){
-        
-    });*/
+ 
 
 });
 
 describe("Local Database crud operations on RELATIONS exceptional cases",function(){
-    
+    it("Should give error when trying to delete relational shortcut entity with undefined shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.ShortcutRelationalDelete(undefined,function(newValue){
+            expect(newValue).to.be.false;
+            done();
+        });
+    });
+    it("Should give error when trying to delete relational shortcut entity with null shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.ShortcutRelationalDelete(null,function(newValue){
+            expect(newValue).to.be.false;
+            done();
+        });
+    });
+    it("Should give error when trying to delete relational shortcut entity with bool shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.ShortcutRelationalDelete(true,function(newValue){
+            expect(newValue).to.be.false;
+            done();
+        });
+    });
+    it("Should give error when trying to delete relational shortcut entity with number shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.ShortcutRelationalDelete(-1,function(newValue){
+            expect(newValue).to.be.false;
+            done();
+        });
+    });
+    it("Should give error when trying to delete relational shortcut entity with object shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.ShortcutRelationalDelete({},function(newValue){
+            expect(newValue).to.be.false;
+            done();
+        });
+    });
 });

@@ -1,8 +1,11 @@
 process.env.NODE_ENV = 'test';
 
 //var assert = require('assert');
-var expect = require('chai').expect;
-var should = require('chai').should();
+const assertArrays = require('chai-arrays');
+const chai = require('chai');
+chai.use(assertArrays);
+var expect = chai.expect;
+var should = chai.should();
 describe('Local Database General Connectivity', function () {
     it('Should give shortcuts and stats like not null or not undefined', function (done) {
         var context = require("../../local-db/context");
@@ -177,6 +180,16 @@ describe("Local Database crud operations on stats",function(){
             done();
         });
     });
+    it("Should get stat entity with shortcutid",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var shortcutId = "90x5w08W3PGk2ctm"
+        unitOfWork.StatRepository.GetStatWithShortcutId(shortcutId,function(result){
+            expect(result).not.to.be.null;
+            expect(result).not.to.be.undefined;
+            expect(result).to.be.array();
+            done();
+        });
+    });
     it("Should delete stat entity in db with _id",function(done){
         var unitOfWork = require("../../unitofwork");
         var id = "WmFgxF1NKxnkzO8q"
@@ -344,7 +357,37 @@ describe("Local Database crud operations on shortcutsinfolders",function(){
 
 });
 describe("Local Database crud operations on RELATIONS",function(){
-    it("Should, if shortcut entity delete; also delete in folders relation and stats relation",function(){
+    it("Should, if shortcut entity delete; also delete in folders relation and stats relation",function(done){
+
+        var unitOfWork = require("../../unitofwork");
+        var newShortcut = {
+            command: "ping google.com",
+            description: "simple ping command for google",
+            star:true
+        }
+        unitOfWork.ShortcutRepository.CreateShortcut(newShortcut,function(addedShortcut){
+            var stat = {
+                copied:true,
+                openedincmd:false,
+                openedinbrowser:false,
+                shortcut_id:addedShortcut._id
+            };
+            var newShortcutsinfolders = {
+                //_id:"4uGHxXOsYCtehGe9",
+                folder_id: "Rnh6kDHNuaR0a0hS",
+                shortcut_id:addedShortcut._id
+            }
+            unitOfWork.StatRepository.CreateStat(stat,function(addedStat){
+                unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(addedShortcutInFolder){
+                    unitOfWork.RelationsRepository.ShortcutRelationalDelete(addedShortcut._id,function(status){
+                        expect(status).to.be.true;
+                        done();
+                    });
+                });
+            });
+            
+        });
+        
 
     });
     it("Should get shortcut entity with relational stat entity array",function(){

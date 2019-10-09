@@ -1,4 +1,5 @@
 const is = require("is_js");
+const log = require('../../logger');
 
 var shourtcutRepository = require("./repo-shourtcut");
 var statRepository = require("./repo-stat");
