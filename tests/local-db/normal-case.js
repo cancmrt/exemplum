@@ -390,10 +390,39 @@ describe("Local Database crud operations on RELATIONS",function(){
         
 
     });
-    it("Should get shortcut entity with relational stat entity array",function(){
+    it("Should get shortcut entity with relational stat entity array",function(done){
+
+        var unitOfWork = require("../../unitofwork");
+        var newShortcut = {
+            command: "ping google.com",
+            description: "simple ping command for google",
+            star:true
+        }
+        unitOfWork.ShortcutRepository.CreateShortcut(newShortcut,function(addedShortcut){
+            var stat = {
+                copied:true,
+                openedincmd:false,
+                openedinbrowser:false,
+                shortcut_id:addedShortcut._id
+            };
+            unitOfWork.StatRepository.CreateStat(stat,function(addedStat){
+                unitOfWork.RelationsRepository.GetShortcutWithRelationalStats(addedShortcut._id,function(result){
+                    expect(result).not.to.be.null;
+                    expect(result).not.to.be.undefined;
+                    expect(result).haveOwnProperty("_id");
+                    expect(result._id).not.to.be.null;
+                    expect(result._id).not.to.be.undefined;
+                    expect(result._id).to.be.string;
+                    expect(result.stats).to.be.array();
+                    done();
+                });
+            });
+            
+        });
+        
 
     });
-    it("Should get all folders entity with relational shortcut entity array",function(){
+    it("Should get all shortcuts entity in relational folder",function(){
 
     });
     it("Should, if folder entity delete; also delete shortcut relation which added to folder",function(){

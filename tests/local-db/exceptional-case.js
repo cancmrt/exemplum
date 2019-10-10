@@ -1534,4 +1534,40 @@ describe("Local Database crud operations on RELATIONS exceptional cases",functio
             done();
         });
     });
+
+    it("Should give error when trying to get relational shortcut entity and related stats with undefined shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.GetShortcutWithRelationalStats(undefined,function(newValue){
+            expect(newValue).to.be.null;
+            done();
+        });
+    });
+    it("Should give error when trying to get relational shortcut entity and related stats with null shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.GetShortcutWithRelationalStats(null,function(newValue){
+            expect(newValue).to.be.null;
+            done();
+        });
+    });
+    it("Should give error when trying to get relational shortcut entity and related stats with bool shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.GetShortcutWithRelationalStats(true,function(newValue){
+            expect(newValue).to.be.null;
+            done();
+        });
+    });
+    it("Should give error when trying to get relational shortcut entity and related stats with number shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.GetShortcutWithRelationalStats(-1,function(newValue){
+            expect(newValue).to.be.null;
+            done();
+        });
+    });
+    it("Should give error when trying to get relational shortcut entity and related stats with object shortcut_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.GetShortcutWithRelationalStats({},function(newValue){
+            expect(newValue).to.be.null;
+            done();
+        });
+    });
 });

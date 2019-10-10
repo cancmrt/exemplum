@@ -35,12 +35,46 @@ var ShortcutRelationalDelete = function(shortcutId,callback){
         });
     }
     else{
-        log.logger.error("Shortcuts db id parameters is not like our expected");
+        log.logger.error("ShortcutId parameters is not like our expected in ShortcutRelationalDelete");
         callback(false);
     }
     
 }
 
+var GetShortcutWithRelationalStats = function(shortcutId,callback){
+    if(is.not.null(shortcutId) && is.not.undefined(shortcutId) && is.string(shortcutId)){
+
+        var promiseArray = [];
+
+        var GetShortcutWithId = new Promise(resolve => shourtcutRepository.GetShortcutWithId(shortcutId,resolve));
+        var GetShortcutStats = new Promise(resolve => statRepository.GetStatWithShortcutId(shortcutId,resolve));
+
+        promiseArray.push(GetShortcutWithId);
+        promiseArray.push(GetShortcutStats);
+
+        Promise.all(promiseArray).then(function(resultsOnPromise){
+            if(
+                (resultsOnPromise[0] != null && resultsOnPromise[0] != undefined) &&
+                (resultsOnPromise[1] != null && resultsOnPromise[1] != undefined)
+              )
+            {
+                var shourtcutWithStat = resultsOnPromise[0];
+                shourtcutWithStat["stats"] = resultsOnPromise[1];
+                callback(shourtcutWithStat);
+            }
+            else{
+                log.logger.error("Error on GetShortcutWithRelationalStats some promises fall down");
+                callback(null);
+            }
+        });
+    }
+    else{
+        log.logger.error("ShortcutId parameters is not like our expected in GetShortcutWithRelationalStats");
+        callback(null);
+    }
+}
+
 module.exports = {
-    ShortcutRelationalDelete:ShortcutRelationalDelete
+    ShortcutRelationalDelete:ShortcutRelationalDelete,
+    GetShortcutWithRelationalStats:GetShortcutWithRelationalStats
 }
