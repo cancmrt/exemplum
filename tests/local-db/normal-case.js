@@ -180,7 +180,7 @@ describe("Local Database crud operations on stats",function(){
             done();
         });
     });
-    it("Should get stat entity with shortcutid",function(done){
+    it("Should get stats entity with shortcutid",function(done){
         var unitOfWork = require("../../unitofwork");
         var shortcutId = "90x5w08W3PGk2ctm"
         unitOfWork.StatRepository.GetStatWithShortcutId(shortcutId,function(result){
@@ -324,6 +324,26 @@ describe("Local Database crud operations on shortcutsinfolders",function(){
             done();
         });
     });
+    it("Should get shortcutsinfolders entity with shortcutid",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var shortcutId = "90x5w08W3PGk2ctm"
+        unitOfWork.ShortcutsInFolders.GetWithShortcutId(shortcutId,function(result){
+            expect(result).not.to.be.null;
+            expect(result).not.to.be.undefined;
+            expect(result).to.be.array();
+            done();
+        });
+    });
+    it("Should get shortcutsinfolders entity with folderid",function(done){
+        var unitOfWork = require("../../unitofwork");
+        var folderId = "Rnh6kDHNuaR0a0hS"
+        unitOfWork.ShortcutsInFolders.GetWithFolderId(folderId,function(result){
+            expect(result).not.to.be.null;
+            expect(result).not.to.be.undefined;
+            expect(result).to.be.array();
+            done();
+        });
+    });
     it("Should delete targetted with folder_id document in shortcutsinfolders db documents",function(done){
         var unitOfWork = require("../../unitofwork");
 
@@ -422,7 +442,39 @@ describe("Local Database crud operations on RELATIONS",function(){
         
 
     });
-    it("Should get all shortcuts entity in relational folder",function(){
+    it("Should get folder with relational shortcuts entites",function(done){
+
+        var unitOfWork = require("../../unitofwork");
+
+        var newFolder = {
+            folderName: "Docker",
+            star:true
+        }
+        unitOfWork.FolderRepository.CreateFolder(newFolder,function(newFolderValue){
+            var newShortcut = {
+                command: "ping google.com",
+                description: "simple ping command for google",
+                star:true
+            }
+            unitOfWork.ShortcutRepository.CreateShortcut(newShortcut,function(newShortcutValue){
+                var newShortcutsinfolders = {
+                    folder_id: newFolderValue._id,
+                    shortcut_id:newShortcutValue._id
+                }
+                unitOfWork.ShortcutsInFolders.AddShortcutToFolder(newShortcutsinfolders,function(newValue){
+                    unitOfWork.RelationsRepository.GetFolderWithRelationalShortcuts(newFolderValue._id,function(result){
+                        expect(result).not.to.be.null;
+                        expect(result).not.to.be.undefined;
+                        expect(result).haveOwnProperty("_id");
+                        expect(result._id).not.to.be.null;
+                        expect(result._id).not.to.be.undefined;
+                        expect(result._id).to.be.string;
+                        expect(result.shortcuts).to.be.array();
+                        done();
+                    });
+                });
+            });
+        });
 
     });
     it("Should, if folder entity delete; also delete shortcut relation which added to folder",function(){

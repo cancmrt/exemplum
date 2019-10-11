@@ -67,7 +67,7 @@ var GetStatWithShortcutId = function(shortcutId,callback){
                 log.logger.error(err);
                 callback(null);
             }
-            else if(is.null(result) || is.undefined(result) || is.not.object(result)){
+            else if(is.null(result) || is.undefined(result) || is.not.array(result)){
                 log.logger.error("Stats db document is not coming proper");
                 callback(null);
             }

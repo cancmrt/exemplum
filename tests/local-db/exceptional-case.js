@@ -1411,6 +1411,84 @@ describe("Local Database crud operations on shortcutsinfolders exceptional cases
     });
 
 
+    it("Should give error when shortcutsinfolders entity getting with shortcut_id parameter is null",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.ShortcutsInFolders.GetWithShortcutId(null,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when shortcutsinfolders entity getting with shortcut_id parameter is undefined ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.ShortcutsInFolders.GetWithShortcutId(undefined,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when shortcutsinfolders entity getting with shortcut_id parameter is number ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.ShortcutsInFolders.GetWithShortcutId(1,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when shortcutsinfolders entity getting with shortcut_id parameter is bool ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.ShortcutsInFolders.GetWithShortcutId(true,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+
+
+
+    it("Should give error when shortcutsinfolders entity getting with folder_id parameter is null",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.ShortcutsInFolders.GetWithFolderId(null,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when shortcutsinfolders entity getting with folder_id parameter is undefined ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.ShortcutsInFolders.GetWithFolderId(undefined,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when shortcutsinfolders entity getting with folder_id parameter is number ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.ShortcutsInFolders.GetWithFolderId(1,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+    it("Should give error when shortcutsinfolders entity getting with folder_id parameter is bool ",function(done){
+        var unitOfWork = require("../../unitofwork");
+        
+        unitOfWork.ShortcutsInFolders.GetWithFolderId(true,function(result){
+            expect(result).to.be.null;
+            expect(result).not.to.be.undefined;
+            done();
+        });
+    });
+
+
+
 
     it("Should give error when trying to delete shortcutsinfolders entity with undefined folder_id",function(done){
         var unitOfWork = require("../../unitofwork");
@@ -1499,6 +1577,8 @@ describe("Local Database crud operations on shortcutsinfolders exceptional cases
 });
 
 describe("Local Database crud operations on RELATIONS exceptional cases",function(){
+
+
     it("Should give error when trying to delete relational shortcut entity with undefined shortcut_id",function(done){
         var unitOfWork = require("../../unitofwork");
         unitOfWork.RelationsRepository.ShortcutRelationalDelete(undefined,function(newValue){
@@ -1570,4 +1650,42 @@ describe("Local Database crud operations on RELATIONS exceptional cases",functio
             done();
         });
     });
+
+    it("Should give error when trying to get relational folder entity and related shortcuts with undefined folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.GetFolderWithRelationalShortcuts(undefined,function(newValue){
+            expect(newValue).to.be.null;
+            done();
+        });
+    });
+    it("Should give error when trying to get relational folder entity and related shortcuts with null folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.GetFolderWithRelationalShortcuts(null,function(newValue){
+            expect(newValue).to.be.null;
+            done();
+        });
+    });
+    it("Should give error when trying to get relational folder entity and related shortcuts with bool folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.GetFolderWithRelationalShortcuts(true,function(newValue){
+            expect(newValue).to.be.null;
+            done();
+        });
+    });
+    it("Should give error when trying to get relational folder entity and related shortcuts with number folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.GetFolderWithRelationalShortcuts(-1,function(newValue){
+            expect(newValue).to.be.null;
+            done();
+        });
+    });
+    it("Should give error when trying to get relational folder entity and related shortcuts with object folder_id",function(done){
+        var unitOfWork = require("../../unitofwork");
+        unitOfWork.RelationsRepository.GetFolderWithRelationalShortcuts({},function(newValue){
+            expect(newValue).to.be.null;
+            done();
+        });
+    });
+
+
 });

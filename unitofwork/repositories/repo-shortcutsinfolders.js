@@ -33,6 +33,59 @@ var AddShortcutToFolder = function(shourtcutsinfolders,callback){
 
 }
 
+var GetWithFolderId = function(folderId,callback){
+    if(is.not.null(folderId) && is.not.undefined(folderId) && is.string(folderId)){
+        var findQuery = {
+            folder_id:folderId
+        }
+        context.find(findQuery, function(err, result){
+            if(err){
+                log.logger.error(err);
+                callback(null);
+            }
+            else if(is.null(result) || is.undefined(result) || is.not.array(result)){
+                log.logger.error("Shortcutsinfolders db document is not coming proper on GetWithFolderId");
+                callback(null);
+            }
+            else{
+                callback(result)
+            }
+        });
+    }
+    else{
+        log.logger.error("Shortcutsinfolders db folderId parameters is not like our expected");
+        callback(null);
+    }
+
+}
+
+var GetWithShortcutId = function(shortcutId,callback){
+    if(is.not.null(shortcutId) && is.not.undefined(shortcutId) && is.string(shortcutId)){
+        var findQuery = {
+            shortcut_id:shortcutId
+        }
+        context.find(findQuery, function(err, result){
+            if(err){
+                log.logger.error(err);
+                callback(null);
+            }
+            else if(is.null(result) || is.undefined(result) || is.not.array(result)){
+                log.logger.error("Shortcutsinfolders db document is not coming proper on GetWithShortcutId");
+                callback(null);
+            }
+            else{
+                callback(result)
+            }
+        });
+    }
+    else{
+        log.logger.error("Shortcutsinfolders db shortcutId parameters is not like our expected");
+        callback(null);
+    }
+
+}
+
+
 var FolderDeleted = function(folderId, callback){
 
     if(is.not.null(folderId) && is.not.undefined(folderId) && is.string(folderId)){
@@ -90,5 +143,8 @@ var ShortcutDeleted = function(shortcutId, callback){
 module.exports = {
     AddShortcutToFolder:AddShortcutToFolder,
     FolderDeleted:FolderDeleted,
-    ShortcutDeleted:ShortcutDeleted
+    ShortcutDeleted:ShortcutDeleted,
+    GetWithFolderId:GetWithFolderId,
+    GetWithShortcutId:GetWithShortcutId
+
 }
